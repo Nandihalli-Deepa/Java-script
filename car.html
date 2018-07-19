@@ -1,0 +1,84 @@
+
+<!DOCKTYPE html>
+<html>
+    <head>
+        <style>
+            div.button{
+                display:inline-block;
+                background:#33bb;
+                padding:20px;
+                color:blue;
+                cursor:pointer;
+            }
+            p.word{
+                font-size:5cm;
+                padding-left:20px;
+                padding-right:20px;
+            }
+            div.container{
+                width:60px;
+                margin:0 auto;
+
+            }
+            div.container > *{
+                display:inline-block;
+                vertical-align:middle;
+            }
+        </style>
+
+    </head>
+    <body>
+        <div class="row">
+            <div class="container">
+            <div class="button left"> &lt</div>
+     <p class="word"></p>
+     <div class="button right">&gt</div>
+     </div>
+        </div>
+        <input type="text"value="number" id="number">
+        <script>
+            let wordBox=document.querySelector('.word');
+            let leftButton=document.querySelector('.left');
+            let rightButton=document.querySelector('.right');
+            leftButton.addEventListener('click',(e)=>{
+                word=rotateLeft(word);
+                wordBox.textContent=word;
+            });
+            rightButton.addEventListener('click',(e)=>{
+                word=rotateOnceRight(word);
+                wordBox.textContent=word;
+            });
+
+        let word="hello";
+        wordBox.textContent=word;
+
+        function rotateOnceLeft(w){
+            return w.slice(1)+w[0];
+        }
+        var t1=document.getElementById("number");
+        function rotateLeft(w){
+           // let newString;
+            for(let i=0;i<t1.value;i++)
+            w=rotateOnceLeft(w);
+            return w;
+        }
+        function rotateOnceRight(w){
+            return w[w.length-1]+w.substring(0,w.length-1);
+        }
+        var t2=ddocument.getElementById("number");
+        function rotateRight(w){
+            //let newString;
+            for(let i=0;i<t2.value;i++)
+            w=rotateRight(w);
+            return w;
+        
+        }
+        
+
+
+
+
+
+        </script>
+    </body>
+</html>
