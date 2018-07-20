@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+    <head>
+         <title>Basic Typing Animation</title>
+        <style>
+            div.typed{
+                font-family: monospace;
+                font-size:2rem;
+                background-color:blueviolet;
+                
+                color:white;
+                padding:20px 0 20px 20px;
+                display:inline-block;
+                
+            }
+            div.container{
+                background-color:green;
+                min-height:100px;
+            }
+            div.textBox{
+                width:70%;
+                margin: 0 auto;
+            }
+            .typed-cursor{
+                 color:red;
+                 font-size:2em;
+                 animation:blinker 1s linear infinite;
+            }
+            @keyframes blinker{
+                50%{
+                    opacity:0;
+                }
+            }
+
+                div.textbox > *{
+                vertical-align:baseline;
+                }
+        </style>
+
+    </head>
+    <body>
+        <div class="container">
+            <div class="textBox">
+        <div class="typed"></div>
+        <span class="typed-cursor">|</span>
+        </div>
+        </div>
+
+        <script>
+            window.onload=function(){
+                let sentences=["welcome to sathvik softech...","The Software training and dev hub"];
+            let typedBox=document.querySelector(".typed");
+            //let currentIndex=0;
+            let stopIndex=1;
+            let sentenceIndex=0;
+            let numOfSentence=sentences.length;
+            
+            let appending=true;
+            function getNextSentence(){
+                sentenceIndex++;
+                let sentence=sentences[sentenceIndex % numOfSentence];
+                 return sentence;
+            }
+            let text=sentences[0];
+
+            function animateTyping(){
+                
+                typedBox.innerText=text.slice(0,stopIndex);
+                
+                if(appending){
+                    stopIndex++;
+                if(stopIndex > text.length)
+                    appending=false;
+                }
+                else{
+                    stopIndex--;
+                    if(stopIndex==0){
+                    appending=true;
+                    text=getNextSentence();
+                    }
+                }
+
+            }
+           setInterval(animateTyping,500);
+            }
+        </script>
+    </body>
+</html>
